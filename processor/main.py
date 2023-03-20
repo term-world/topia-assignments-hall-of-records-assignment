@@ -54,12 +54,8 @@ class Processor(FixtureSpec):
 # Do not alter -----------------------------------------------
 
 # TODO: Write search_rows function per guidelines in the README
-def search_rows(field: str = "#", value: any = 0) -> list:
-    pass
 
 # TODO: Write total_column function per guidelines in the README
-def total_column(field: str = "#") -> int:
-    pass
 
 def main():
 
@@ -76,7 +72,7 @@ def main():
         if response == 1:
             choice = input("Field to search: ")
             value = input("Value to search for: ")
-            rows = search_rows(choice, value)
+            # TODO: Implement correct call to search_rows
             # TODO: Print the number of rows found
         if response == 2:
             choice = input("Field to total: " )
@@ -84,10 +80,10 @@ def main():
             print(f"Total of {choice}: {total}.")
         if response == 3:
             choice = input("Field to average: ")
-            total = total_column(choice)
-            rows = search_rows(choice, 0)
+            # TODO: Implement correct call to total_column
+            # TODO: Implement correct call to search_rows
             # TODO: Use the above information to calculate
-            #       a column's average
+            #       a column's average using total_column and search_rows
         if response == 4:
             obj.display_table()
         response = obj.display_menu()
