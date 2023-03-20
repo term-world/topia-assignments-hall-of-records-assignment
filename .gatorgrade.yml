@@ -73,7 +73,7 @@
     check: MatchFileRegex
     options:
       regex: "\\[(\\\"|')?[a-zA-Z_]+(\\\"|')?\\]"
-      count: 2
+      count: 3
       exact: false
 - processor/main.py:
   - description: Finds the length of a dictionary
