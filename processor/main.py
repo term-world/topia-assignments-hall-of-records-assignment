@@ -35,8 +35,7 @@ class Processor(FixtureSpec):
                 {"choice": "2 total a column ", "outcome": 2},
                 {"choice": "3 average a column ", "outcome": 3},
                 {"choice": "4 print table ", "outcome": 4},
-                {"choice": "5 quit", "outcome": False},
-                {"choice": "6 SECRET AUTO-AVERAGER", "outcome": "SECRET"}
+                {"choice": "5 quit", "outcome": False}
             ]
             # You might alter this to add a feature ------------
         })
@@ -54,53 +53,13 @@ class Processor(FixtureSpec):
         console.print(table)
 # Do not alter -----------------------------------------------
 
-# Student minimal solution -----------------------------------
+# TODO: Write search_rows function per guidelines in the README
 def search_rows(field: str = "#", value: any = 0) -> list:
-    rows = []
-    for row in DATA:
-        if int(row[field]) >= int(value):
-            rows.append(row)
-    return rows
+    pass
 
+# TODO: Write total_column function per guidelines in the README
 def total_column(field: str = "#") -> int:
-    total = 0
-    for row in DATA:
-        total += row[field]
-    return total
-# Student minimal solution -----------------------------------
-
-# Professor trickery -----------------------------------------
-def auto_averager() -> dict:
-    """ This function is not required. Some students may discover how to do it. """
-    # For folks looking for extra-curricular learning,
-    # no "if" statement required:
-    # fields = [field for field in DATA[0] if field != "ID"]
-    # Or, the could remove the ID column temporarily
-    # Or, see ideal_matches below
-    ideals = {}
-    for field in DATA[0]:
-        if field != "ID" and field != "#":
-            total = 0
-            rows = search_rows(field, 0)
-            for row in DATA:
-                total += row[field]
-            ideals[field] = int(round(total/len(rows),0))
-    return ideals
-
-def ideal_matches(ideals: dict = {}) -> list:
-    """ This is definitely not a function that students need; it's for my trick. """
-    # SPOILER: ONLY I MATCH THE CRITERIA; EVERYONE ELSE IS "LOCKED OUT"
-    fields = list(ideals.keys())
-    for field in fields:
-        for row in DATA:
-            rows = []
-            if int(row[field]) < ideals[field]:
-                rows.append(row)
-            for row in rows:
-                idx = DATA.index(row)
-                DATA.pop(idx)
-    return DATA
-# Professor trickery -----------------------------------------
+    pass
 
 def main():
 
@@ -118,7 +77,7 @@ def main():
             choice = input("Field to search: ")
             value = input("Value to search for: ")
             rows = search_rows(choice, value)
-            print(f"Found {len(rows)} rows.")
+            # TODO: Print the number of rows found
         if response == 2:
             choice = input("Field to total: " )
             total = total_column(choice)
@@ -127,17 +86,10 @@ def main():
             choice = input("Field to average: ")
             total = total_column(choice)
             rows = search_rows(choice, 0)
-            print(f"Average of {choice}: {total/len(rows)}.")
+            # TODO: Use the above information to calculate
+            #       a column's average
         if response == 4:
             obj.display_table()
-        # SECRET, obvs --------------------------------------
-        if response == "SECRET":
-            ideal = auto_averager()
-            ideals = ideal_matches(ideal)
-            for result in ideals:
-                for field in result:
-                    print(f"{field}: {result[field]}")
-        # SECRET, obvs --------------------------------------
         response = obj.display_menu()
 
 if __name__ == "__main__":
