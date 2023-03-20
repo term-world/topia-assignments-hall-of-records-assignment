@@ -66,6 +66,8 @@ def main():
     response = obj.display_menu()
     # Do not alter -------------------------------------------
 
+    # Note: Use f-strings to print the values requested below
+    
     while True:
         if not response:
             break
@@ -76,8 +78,8 @@ def main():
             # TODO: Print the number of rows found
         if response == 2:
             choice = input("Field to total: " )
-            total = total_column(choice)
-            print(f"Total of {choice}: {total}.")
+            # TODO: Implement correct call to total_column
+            # TODO: Print result of totaling operation
         if response == 3:
             choice = input("Field to average: ")
             # TODO: Implement correct call to total_column
