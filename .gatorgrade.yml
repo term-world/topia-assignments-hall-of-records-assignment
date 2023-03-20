@@ -1,0 +1,85 @@
+# TODOs
+
+- description: No TODO markers left in reflection.md or editorial.md
+  category: TODOs
+  check: ExecuteCommand
+  options:
+    command: 'bash .tests/.todos'
+- processor/main.py:
+  - description: 'Processor.py contains no TODO markers'
+    category: TODOs
+    check: MatchFileFragment
+    options:
+      fragment: 'TODO'
+      count: 0
+      exact: true
+
+# Functions
+
+- processor/main.py:
+  - description: Processor.py implements a function called search_rows with 2 parameters
+    category: Functions
+    check: MatchFileRegex
+    options:
+      regex: 'def search_rows\([a-zA-Z0-9_\:\s=#"]+,(\s)?[a-zA-Z0-9_\:\s=#"]+\)(.*)?\:'
+      count: 1
+      exact: true
+- processor/main.py:
+  - description: Processor.py implements a function called total_column with 1 parameters
+    category: Functions
+    check: MatchFileRegex
+    options:
+      regex: 'def total_column\([a-zA-Z0-9_\:\s=#"]+\)(.*)?\:'
+      count: 1
+      exact: true
+- processor/main.py:
+  - description: Processor.py calls a function called search_rows, passing 2 arguments
+    category: Functions
+    check: MatchFileRegex
+    options:
+      regex: 'search_rows\([a-zA-Z0-9_\(\)"]+,(\s)?[a-zA-Z0-9_\(\)"]+\)'
+      count: 1
+      exact: false
+- processor/main.py:
+  - description: Processor.py calls a function called total_column, passing 1 argument
+    category: Functions
+    check: MatchFileRegex
+    options:
+      regex: 'total_column\([a-zA-Z0-9_\(\)\[\]"]+\)'
+      count: 1
+      exact: false
+  
+  # Code cops
+
+- processor/main.py:
+  - description: Processor.py iterates (for loop) over the DATA set enough times
+    category: Iteration
+    check: MatchFileRegex
+    options:
+      regex: 'for\s[a-zA-Z0-9_]+\sin\sDATA\:'
+      count: 2
+      exact: false
+- processor/main.py:
+  - description: search_rows uses the correct relational operator (>=) to test values
+    category: Conditional logic
+    check: MatchFileRegex
+    options:
+      regex: 'if\s[a-zA-Z0-9\[\]_\(\)]+\s>\='
+      count: 1
+      exact: false
+- processor/main.py:
+  - description: Accesses a dictionary using a key
+    category: Dictionaries
+    check: MatchFileRegex
+    options:
+      regex: "\\[(\\\"|')?[a-zA-Z0-9_]+(\\\"|')?\\]"
+      count: 1
+      exact: false
+- processor/main.py:
+  - description: Finds the length of a dictionary
+    category: Dictionaries
+    check: MatchFileRegex
+    options:
+      regex: "len\\([a-zA-Z0-9_\\[\\]]+\\)"
+      count: 1
+      exact: false

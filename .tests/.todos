@@ -1,0 +1,11 @@
+passed=1
+if ! grep -q "TODO" "office/reflection.md"; then
+	passed=0
+fi
+if ! grep -q "TODO" "office/editorial.md"; then
+	passed=0
+fi
+if [ $passed -eq 0 ]; then
+	exit 0
+fi
+exit 1
